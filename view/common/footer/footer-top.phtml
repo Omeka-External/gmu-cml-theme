@@ -1,0 +1,127 @@
+<?php
+$escHtml = $this->plugin('escapeHtml');
+$escAttr = $this->plugin('escapeHtmlAttr');
+
+$footerLogo                   = $this->themeSetting( 'footer_logo' );
+$footerLogoLink               = $this->themeSetting( 'footer_logo_link' );
+$footerContentCol2            = $this->themeSetting( 'footer_content_col2' );
+$footerContentCol3            = $this->themeSetting( 'footer_content_col3' );
+$contactInfo['location']      = $this->themeSetting('contact_info_location') ?? '';
+$contactInfo['location_link'] = $this->themeSetting('contact_info_location_link') ?? '';
+$contactInfo['phone']         = $this->themeSetting('contact_info_phone') ?? '';
+$contactInfo['email']         = $this->themeSetting('contact_info_email') ?? '';
+$socialNetworks               = array( 'facebook', 'twitter', 'linkedin', 'instagram', 'youtube', 'mastodon' );
+
+$additional_classes = '';
+
+$hasContactInfo = ! empty( array_filter( $contactInfo ) );
+
+$hasSocialNetworks = false;
+foreach ( $socialNetworks as $social_network ) {
+	if ( $this->themeSetting( "{$social_network}_url" ) ) {
+		$hasSocialNetworks = true;
+		break;
+	}
+}
+
+$hasFooterTopColumns = false;
+if ( $footerLogo || $footerContentCol2 || $footerContentCol3 || $hasContactInfo || $hasSocialNetworks ) {
+    $hasFooterTopColumns = true;
+}
+?>
+
+<div class="main-footer__top">
+    <?php if ( $hasFooterTopColumns ) : ?>
+        <div class="main-footer__top-container container <?php echo $additional_classes; ?>">
+
+            <!-- Column 1 -->
+            <?php if ( $footerLogo || $footerContentCol2 ) : ?>
+
+                <div class="main-footer__col main-footer__col1">
+                    <?php if ( $footerLogo ): ?>
+                        <?php if( $footerLogoLink ) : ?>
+                            <a class="main-footer__logo-link" target="_blank" href="<?php echo $escAttr( $footerLogoLink ); ?>">
+                        <?php endif; ?>
+                        <img
+                            src="<?php echo $this->themeSettingAssetUrl( 'footer_logo' ); ?>"
+                            alt="<?php echo $escHtml( $site->title() ); ?>" />
+                        <?php if( $footerLogoLink ) : ?>
+                            </a>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                
+            <?php endif; ?>
+
+            <!-- Column 2 -->
+            <?php if ( $footerContentCol2 ) : ?>
+            
+                <div class="main-footer__col main-footer__col2">
+                    <?php echo $footerContentCol2; ?>
+                </div>
+
+            <?php endif; ?>
+
+            <!-- Column 3 -->
+            <?php if ( $footerContentCol3 || $hasSocialNetworks ) : ?>
+
+                <div class="main-footer__col main-footer__col3">
+                    <?php if ( $footerContentCol3 ) : ?>
+                        <?php echo $footerContentCol3; ?>
+                    <?php endif; ?>
+
+                    <!-- Social Networks -->
+                    <?php if ($hasSocialNetworks) : ?>
+                        <div class="main-footer__social-network">
+                            <?php foreach ( $socialNetworks as $social_network ) : ?>
+                                <?php if ( $social_network_url = $this->themeSetting( "{$social_network}_url" ) ) : ?>
+                                    <a href="<?php echo $escAttr($social_network_url); ?>">
+                                        <img src="<?php echo $this->assetUrl( "img/{$social_network}.svg" ); ?>"
+                                             alt="<?php echo $escAttr( $social_network ); ?>">
+                                    </a>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+            <?php endif; ?>
+
+            <!-- Column 4 -->
+            <?php if ( $hasContactInfo ) : ?>
+
+                <div class="main-footer__col main-footer__col4 footer-contact-info">
+                    <?php if ($contactInfo['location']) : ?>
+                        <?php if ($contactInfo['location_link']) : ?>
+                            <a class="contact_info contact_info_location" target="_blank" href="<?php echo $this->escapeHtmlAttr($contactInfo['location_link']); ?>">
+                        <?php else : ?>
+                            <div class="contact_info contact_info_location">
+                        <?php endif; ?>
+                            <?php echo nl2br($escHtml($contactInfo['location'])); ?>
+                        <?php if ($contactInfo['location_link']) : ?>
+                            </a>
+                        <?php else : ?>
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php if ($contactInfo['phone']) : ?>
+                        <div class="contact_info contact_info_phone">
+                            <a href="tel:<?php echo $this->escapeHtmlAttr($contactInfo['phone']); ?>">
+                                <?php echo $this->escapeHtml($contactInfo['phone']); ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($contactInfo['email']) : ?>
+                        <div class="contact_info contact_info_email">
+                            <a target="_blank" href="mailto:<?php echo $this->escapeHtmlAttr($contactInfo['email']); ?>">
+                                <?php echo $this->escapeHtml($contactInfo['email']); ?>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+            <?php endif; ?>
+
+        </div>
+    <?php endif; ?>
+</div>

@@ -1,0 +1,4 @@
+<?php
+$altText = $resource->altText() ?: $resource->displayTitle() ?: '';
+?>
+<?php echo $resource->render(['thumbnailAttribs' => ['alt' => $altText]]); ?>

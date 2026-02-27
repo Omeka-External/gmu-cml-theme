@@ -1,0 +1,85 @@
+<?php
+$siteTitle = $site->title();
+$userBar = $this->userBar();
+$bannerHeading = $this->themeSetting('banner_heading');
+$bannerDescription = $this->themeSetting('banner_description');
+$bannerHeightProperty = $bannerHeading || $bannerDescription ? 'min-height' : 'height';
+$primaryColor = $this->themeSetting('primary_color') ?? '#d62d6a';
+$secondaryColor = $this->themeSetting('secondary_color') ?? '#4D1068';
+$accentColor = $this->themeSetting('accent_color') ?? '#0a4f9e';
+$complementaryColor = $this->themeSetting('complementary_color') ?? '#F0B247';
+
+$this->headMeta()->setCharset('utf-8');
+$this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
+$this->headTitle($siteTitle)->setSeparator(' · ');
+$this->headTitle()->append($this->setting('installation_title', 'Omeka S'));
+$this->headLink()->prependStylesheet($this->assetUrl('css/style.css'));
+$this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
+$this->headLink()->prependStylesheet('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+$this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
+$this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
+$this->jsTranslate();
+$this->trigger('view.layout');
+
+if ($userBar) {
+    $this->htmlElement('body')->appendAttribute('class', 'user-bar');
+}
+
+$page_template = isset($page) ? $page->layoutDataValue('template_name') : '';
+?>
+
+<?php echo $this->doctype(); ?>
+<?php echo $this->htmlElement('html')->setAttribute('lang', $this->lang()); ?>
+    <head>
+        <?php echo $this->headMeta(); ?>
+        <?php echo $this->headTitle(); ?>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <?php echo $this->headLink(); ?>
+        <?php echo $this->headStyle(); ?>
+        <?php echo $this->headScript(); ?>
+
+        <style media="screen">
+            :root {
+                --primary: <?php echo $primaryColor; ?>;
+                --primary-contrast: <?php echo $this->ContrastColor($primaryColor, ['#fff', '#312C27']); ?>;
+                --primary-dark: <?php echo $this->ShadeColor($primaryColor, -10); ?>;
+                --primary-dark-contrast: <?php echo $this->ContrastColor($this->ShadeColor($primaryColor, -10), ['#fff', '#312C27']); ?>;
+                --secondary: <?php echo $secondaryColor; ?>;
+                --secondary-contrast: <?php echo $this->ContrastColor($secondaryColor, ['#fff', '#595148']); ?>;
+                --secondary-dark: <?php echo $this->ShadeColor($secondaryColor, -10); ?>;
+                --accent: <?php echo $accentColor; ?>;
+                --accent-contrast: <?php echo $this->ContrastColor($accentColor, ['#fff', '#312C27']); ?>;
+                --accent-dark: <?php echo $this->ShadeColor($accentColor, -10); ?>;
+                --complementary: <?php echo $complementaryColor; ?>;
+                --complementary-contrast: <?php echo $this->ContrastColor($complementaryColor, ['#fff', '#312C27']); ?>;
+                --complementary-dark: <?php echo $this->ShadeColor($complementaryColor, -10); ?>;
+            }
+
+        </style>
+    </head>
+
+    <?php echo $this->htmlElement('body'); ?>
+        <a id="skipnav" href="#content"><?php echo $this->translate('Skip to main content'); ?></a>
+
+        <?php echo $this->partial('common/header', ['userBar' => $userBar, 'site' => $site]); ?>
+
+        <?php if (strpos($page_template, 'page-with-hero') === 0): ?>
+            <?php echo $this->partial('common/banner'); ?>
+        <?php endif; ?>
+
+        <main id="content" class="container" role="main" tabindex="-1">
+            <?php echo $this->content; ?>
+        </main>
+
+        <?php echo $this->partial('common/footer'); ?>
+
+        <?php
+        echo $this->inlineScript()
+            ->prependFile($this->assetUrl('js/navigation.js'))
+            ->prependFile($this->assetUrl('js/script.js'));
+        ?>
+    </body>
+</html>

@@ -1,0 +1,100 @@
+.assets,
+.block-asset {
+    &.inline {
+        .assets {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+
+            @media(min-width: $md) {
+                flex-direction: row;
+            }
+        }
+    }
+
+    .assets {
+        height: 100%;
+
+        .asset {
+            display: inline-flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            vertical-align: top;
+
+            img {
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+
+            &.no-cropping {
+                img {
+                    object-fit: contain;
+                }
+            }
+
+            > a {
+                font-size: 0;
+                height: 100%;
+            }
+
+            .caption {
+                background-color: $color__primary;
+                color: $color__primary-contrast;
+                font-style: normal;
+                padding: 20px;
+                position: relative;
+                text-align: left;
+                width: 100%;
+
+                a,
+                .link-title {
+                    color: $color__primary-contrast;
+                    font-size: $font__base-size;
+                    font-weight: 500;
+
+                    @media(min-width: $md) {
+                        font-size: $font__h5-sm-size;
+                    }
+                }
+            }
+        }
+    }
+
+    &.caption-secondary {
+        .caption {
+            background-color: $color__secondary !important;
+            color: $color__secondary-contrast !important;
+
+            a,
+            .link-title {
+                color: $color__secondary-contrast !important;
+            }
+        }
+    }
+
+    &.caption-accent {
+        .caption {
+            background-color: $color__accent !important;
+            color: $color__accent-contrast !important;
+
+            a,
+            .link-title {
+                color: $color__accent-contrast !important;
+            }
+        }
+    }
+
+    &.caption-complementary {
+        .caption {
+            background-color: $color__complementary !important;
+            color: $color__complementary-contrast !important;
+
+            a,
+            .link-title {
+                color: $color__complementary-contrast !important;
+            }
+        }
+    }
+}

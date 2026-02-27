@@ -1,0 +1,28 @@
+a {
+    color: $color__link;
+    transition: all 0.2s;
+    word-wrap: break-word;
+
+    &.button {
+        display: inline-block;
+    }
+
+    &:visited {
+        color: $color__link;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color__link-dark;
+    }
+
+    &:focus {
+        outline: thin dotted;
+    }
+
+    &:hover,
+    &:active {
+        outline: 0;
+    }
+}

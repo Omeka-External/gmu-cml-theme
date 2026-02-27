@@ -1,0 +1,114 @@
+.main-header {
+    background-color: $color__primary;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    transition: top 0.3s ease-out;
+
+    &__top-bar {
+        background-color: $color__bg-body;
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 4px;
+            padding-bottom: 4px;
+
+            @media (min-width: $lg) {
+                align-items: flex-end;
+                justify-content: space-between;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            .top-bar__button {
+                background-color: $color__complementary;
+                border: 1px solid $color__complementary;
+                border-radius: 5px;
+                color: $color__complementary-contrast;
+                font-size: $font__sm-size;
+                font-weight: 600;
+                line-height: 1;
+                margin-left: auto;
+                padding: 9px 20px;
+
+                &:hover,
+                &:focus {
+                    background-color: $color__complementary-dark;
+                    border: 1px solid $color__complementary-dark;
+                }
+
+                &_icon {
+                    background: url("../img/center-for-mason-icon.svg") 6px center no-repeat;
+                    border: 1px solid $color__buttons;
+                    color: $color__buttons;
+                    padding: 9px 6px 9px 36px;
+
+                    &:hover,
+                    &:focus {
+                        background-color: transparent;
+                        border: 1px solid $color__buttons-dark;
+                        color: $color__buttons-dark;
+                    }
+                }
+            }
+        }
+    }
+
+    
+    hr {
+        background-color: $color__secondary;
+        margin-bottom: 0;
+    }
+
+    &__main-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        position: relative;
+    }
+
+    &__site-title {
+        flex-shrink: 0;
+        margin-bottom: 0;
+        max-width: 50%;
+        order: 0;
+        padding: 13px 0;
+
+        @media (min-width: $lg) {
+            max-width: 30%;
+            order: initial;
+        }
+
+        a {
+            display: block;
+            color: $color__primary-contrast;
+            font-family: $font__headings;
+            font-size: $font__h3-sm-size;
+            font-weight: 500;
+            line-height: $font__headings-line-height;
+            text-decoration: none;
+
+            &:has(img) {
+                font-size: 0;
+            }
+        }
+
+        img {
+            max-height: 50px;
+            width: auto;
+
+            @media (min-width: $lg) {
+                max-height: 84px;
+            }
+        }
+        
+    }
+
+}

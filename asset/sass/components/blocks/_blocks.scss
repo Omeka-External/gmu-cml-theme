@@ -1,0 +1,128 @@
+/* Assets
+--------------------------------------------- */
+@import "assets/assets";
+
+/* Browse Preview
+--------------------------------------------- */
+@import "browse-preview/browse-preview";
+
+/* Carousel
+--------------------------------------------- */
+@import "carousel/carousel";
+
+/* Collecting
+--------------------------------------------- */
+@import "collecting/collecting";
+
+/* Item With metadata
+--------------------------------------------- */
+@import "item-with-metadata/item-with-metadata";
+
+/* Item Showcase
+--------------------------------------------- */
+@import "item-showcase/item-showcase";
+
+/* Media Embed
+--------------------------------------------- */
+@import "media-embed/media-embed";
+
+/* Table of contents
+--------------------------------------------- */
+@import "table-of-contents/table-of-contents";
+
+/* List of sites
+--------------------------------------------- */
+@import "list-of-sites/list-of-sites";
+
+/* Timeline
+--------------------------------------------- */
+@import "timeline/timeline";
+
+/* Groups
+--------------------------------------------- */
+@import "groups/image-hover-text";
+
+.has-background {
+    padding: 50px;
+    background-color: $color__primary;
+
+    * {
+        color: $color__primary-contrast;
+    }
+
+    .block-html *:last-child {
+        margin-bottom: 0;
+    }
+
+    .btn--secondary {
+        border-color: $color__primary-contrast;
+
+        &:hover,
+        &:active,
+        &:focus,
+        &:visited {
+            color: $color__primary-contrast;
+        }
+    }
+
+    .button:not(.btn--secondary) {
+        color: $color--buttons-contrast;
+    }
+
+    &.fullwidth {
+        @media (min-width: $lg) {
+            padding: 90px;
+        }
+
+        .overflow {
+            margin-bottom: -120px;
+            margin-top: -115px;
+        }
+    }
+
+    &.secondary {
+        background-color: $color__secondary;
+
+        * {
+            color: $color__secondary-contrast;
+        }
+
+        .btn--secondary {
+            border-color: $color__secondary-contrast;
+        }
+    }
+
+    &.accent {
+        background-color: $color__accent;
+
+        * {
+            color: $color__accent-contrast;
+        }
+
+        .btn--secondary {
+            border-color: $color__accent-contrast;
+        }
+    }
+
+    &.complementary {
+        background-color: $color__complementary;
+
+        * {
+            color: $color__complementary-contrast;
+        }
+
+        .btn--secondary {
+            border-color: $color__complementary-contrast;
+        }
+    }
+
+    .overflow {
+        margin-bottom: -80px;
+        margin-top: -75px;
+
+        @media (max-width: $lg) {
+            margin-bottom: 0 !important;
+            margin-top: 0 !important;
+        }
+    }
+}

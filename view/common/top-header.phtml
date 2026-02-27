@@ -1,0 +1,16 @@
+<?php
+    $topHeaderButtonStyle = $this->themeSetting('top_header_button_style') ?? 'default';
+    $topHeaderButtonLabel = $this->themeSetting('top_header_button_label');
+    $topHeaderButtonUrl   = $this->themeSetting('top_header_button_url');
+?>
+
+<?php if ($topHeaderButtonLabel && $topHeaderButtonUrl) : ?>
+    <div class="main-header__top-bar">
+        <div class="container">
+            <a class="top-bar__button top-bar__button_<?php echo $this->escapeHtmlAttr($topHeaderButtonStyle); ?>" href="<?php echo $this->escapeHtmlAttr($topHeaderButtonUrl); ?>">
+                <?php echo $this->escapeHtml($topHeaderButtonLabel); ?>
+            </a>
+        </div>
+    </div>
+<?php endif; ?>
+
