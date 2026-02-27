@@ -2,7 +2,7 @@
 
 A custom Omeka S theme built for the Center For Mason Legacies - George Mason University, offering a variety of customization options and a clean design, built using modular styling and a mobile-first approach, with a modern and accessible UX/UI.
 
-![CML Theme](https://github.com/Omeka-External/gmu-cml-theme/blob/master/theme.jpg?raw=true)
+![theme](https://github.com/user-attachments/assets/b2079cff-b152-478a-a7a3-51f65bdb8ee9)
 
 ## Installation
 
