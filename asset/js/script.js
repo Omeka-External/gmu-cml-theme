@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 return;
             }
 
-            const blockHtmlTitle = blockHtml.querySelector('.heading');
+            const blockHtmlTitle = blockHtml.querySelector('h2');
 
             if (blockHtmlTitle) {
                 const blockHtmlTitleStyles = window.getComputedStyle(blockHtmlTitle);
