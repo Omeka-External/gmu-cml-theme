@@ -219,8 +219,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Image Hover Text Read More links
-    document.querySelectorAll('.image-hover-text .read-more a').forEach(function(imageHoverTextViewMore) {
-        imageHoverTextViewMore.textContent = '';
+    document.querySelectorAll('.image-hover-text .read-more a').forEach(function(el) {
+        el.setAttribute('aria-label', el.textContent.trim());
+        el.textContent = '';
     });
 
     // Set Main-content min-height
